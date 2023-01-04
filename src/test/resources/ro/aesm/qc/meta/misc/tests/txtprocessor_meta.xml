@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<m:model xmlns:m="https://qc.aesm.ro/meta"
+	xmlns="https://qc.aesm.ro/meta/txt">
+
+	<!-- keep -->
+
+	<m:text_processor name="keep">
+		<!-- result: <li>a</li>|<li>b</li>|<li>c</li>|<li>d</li> -->
+
+		<keep from="&lt;li" from_offset="0" to="li&gt;" to_offset="3"
+			occurrence="*" separator="|" />
+	</m:text_processor>
+
+	<m:text_processor name="keep2">
+		<!-- result: <li>a</li>|<li>c</li> -->
+		<keep from="&lt;li" from_offset="0" to="li&gt;" to_offset="3"
+			occurrence="1,3" separator="|" />
+	</m:text_processor>
+
+	<m:text_processor name="keep3">
+		<!-- result: <li>b</li>|<li>c</li> -->
+
+		<keep from="&lt;li" from_offset="0" to="li&gt;" to_offset="3"
+			occurrence="2:3" separator="|" />
+	</m:text_processor>
+
+	<m:text_processor name="keep3.1">
+		<!-- result: <li>b</li>|<li>c</li>|<li>d</li> -->
+
+		<keep from="&lt;li" from_offset="0" to="li&gt;" to_offset="3"
+			occurrence="2:" separator="|" />
+	</m:text_processor>
+
+	<m:text_processor name="keep4">
+		<!-- result: <li>a</li> -->
+
+		<keep from="&lt;li" from_offset="0" to="li&gt;" to_offset="3"
+			separator="|" />
+	</m:text_processor>
+
+	<m:text_processor name="keep5">
+		<!-- result: ul -->
+		<keep index="1:3" />
+	</m:text_processor>
+
+	<m:text_processor name="keep_id">
+		<!-- result: ul1 -->
+		<keep from="&quot;" from_offset="1" to="&quot;" />
+	</m:text_processor>
+
+	<!-- Replace -->
+
+	<m:text_processor name="demo_replace_default_occurrence">
+		<!-- result: <ul id="ul1"><x>a</li><li>b</li><li>c</li><li>d</li></ul> -->
+		<replace what="li" with="x" />
+	</m:text_processor>
+
+	<m:text_processor name="demo_replace_all">
+		<!-- result: <ul id="ul1"><x>a</x><x>b</x><x>c</x><x>d</x></ul> -->
+
+		<replace what="li" with="x" occurrence="*" />
+	</m:text_processor>
+
+	<m:text_processor name="demo_replace_list">
+		<!-- result: <ul id="ul1"><li>a</x><x>b</li><li>c</li><li>d</li></ul> -->
+		<replace what="li" with="x" occurrence="2,3,11" />
+	</m:text_processor>
+
+	<m:text_processor name="demo_replace_range">
+		<!-- result: <ul id="ul1"><li>a</li><x>b</x><x>c</x><x>d</x></ul> -->
+		<replace what="li" with="x" occurrence="3:" />
+	</m:text_processor>
+
+	<m:text_processor name="demo_replace_index_range">
+		<!-- result: <ul -><li>a</li><li>b</li><li>c</li><li>d</li></ul> -->
+		<replace index="4:12" with="-" />
+	</m:text_processor>
+
+	<!-- Replace between -->
+
+	<m:text_processor name="demo_replace_between">
+		<!-- result: <ul id="ul1">[x][x][x][x]</ul> -->
+		<replace_between from="li" from_offset="-1" to="li"
+			to_offset="3" with="[x]" occurrence="*" />
+	</m:text_processor>
+
+	<m:text_processor
+		name="demo_replace_between_with_occurrence">
+		<!-- result: <ul id="ul1">x<li>b</li>x<li>d</li></ul> -->
+		<replace_between from="&lt;li" from_offset="0"
+			to="li&gt;" to_offset="3" with="x" occurrence="1,3" />
+	</m:text_processor>
+
+</m:model>

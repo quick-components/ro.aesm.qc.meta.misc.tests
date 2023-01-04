@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: QC miscellaneous meta model tests
+Bundle-SymbolicName: ro.aesm.qc.meta.misc.tests
+Bundle-Version: 0.0.1.qualifier
+Fragment-Host: ro.aesm.qc.meta.misc
+Import-Package: org.junit.jupiter.api;version="5.0.0",
+ org.osgi.framework;version="1.10.0",
+ org.osgi.service.component.annotations;version="1.5.0";resolution:=optional,
+ org.osgi.util.tracker,
+ ro.aesm.qc.api.meta
+Automatic-Module-Name: ro.aesm.qc.meta.misc.tests
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-11
